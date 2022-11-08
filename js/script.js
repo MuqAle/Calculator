@@ -7,6 +7,7 @@ const output = document.querySelector("#output");
 const clearBtn = document.querySelector('#clear-btn');
 const operatorBtn = document.querySelectorAll('.operator');
 const decimalBtn = document.querySelector('#decimal');
+const enterBtn = document.querySelector("#enter-btn")
 const add = (a,b) => {return a + b};
 const subtract = (a,b) => {return a - b};
 const multiply = (a,b) => {return a * b};
@@ -35,16 +36,18 @@ function inputOperator(){
             output.textContent = ''  
         });
     }
+}
 
+function equalOperate(){
+    enterBtn.addEventListener('click', (e) => {
+        numbersStored['second_number'] = output.textContent
+        output.textContent = operate(numbersStored['operator'], Number(numbersStored['first_number']), Number(numbersStored['second_number']))
+        console.log(numbersStored)
+    } )
 }
 
 
-
-
-
 function operate(operator, a , b){
-    a = numbersStored['first_number']
-    operator = numbersStored['operator'];
     switch(operator){
         case '+':{
             return add(a ,b);
@@ -61,6 +64,9 @@ function operate(operator, a , b){
     }
 }
 
+
+
+
 clearBtn.addEventListener('click', () => {
     output.textContent = '';
     for (const key in numbersStored){
@@ -72,3 +78,5 @@ clearBtn.addEventListener('click', () => {
 decimalBtn.addEventListener('click', () => decimalBtn.disabled = true)
 inputDigits()
 inputOperator()
+equalOperate()
+
