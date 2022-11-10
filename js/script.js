@@ -10,14 +10,13 @@ const decimalBtn = document.querySelector('#decimal');
 const enterBtn = document.querySelector("#enter-btn");
 const negativeBtn = document.querySelector('#negative');
 const clearBtn = document.querySelector('#clear')
+const percentBtn = document.querySelector('#percent')
 const add = (a,b) => {return a + b};
 const subtract = (a,b) => {return a - b};
 const multiply = (a,b) => {return a * b};
 const divide = (a,b) => {
     if(b == 0){
-        for (const key in numbersStored){
-            delete numbersStored[key];
-        }
+        clearEverything()
         return 'ERROR'
     }
     else{return a/b}
@@ -27,18 +26,22 @@ const divide = (a,b) => {
 let numbersStored = {};
 
 
+
+
 function inputDigits(){
     for (let btn of digitBtn){
         btn.addEventListener('click', (e) => {
-            if(output.textContent == 0 && !(output.textContent.includes('.'))){
+            if(output.textContent == 0 && !output.textContent.includes('.')){
             output.textContent=''}
             else if(output.textContent == numbersStored['last_number'] || output.textContent == numbersStored['results'] ){
-                output.textContent = ''} 
-            output.textContent += `${e.target.textContent}`});
-            
+                output.textContent = ''}
+            output.textContent += `${e.target.textContent}`;});
+          
     }
     
 }
+
+output.textContent.includes
 
 
 function inputOperator(){
@@ -50,7 +53,7 @@ function inputOperator(){
         });
         
     }
-}
+};
 
 function equalOperate(){
     enterBtn.addEventListener('click', () => {
@@ -70,8 +73,12 @@ function equalOperate(){
             output.textContent = operate(numbersStored['operator'], parseFloat(numbersStored['results']), parseFloat(numbersStored['next_number']));
             numbersStored['results'] = output.textContent;}
         decimalBtn.disabled = false
+        if (!('last_number' in numbersStored)){
+            output.textContent = 0
+            clearEverything()
+        }
         console.log(numbersStored)
-    } )
+    })
 };
 
 
@@ -91,45 +98,51 @@ function operate(operator, a , b){
             return parseFloat(divide(a,b).toFixed(12));
         }
     }
-}
+};
 
 
 
 allClearBtn.addEventListener('click', () => {
     output.textContent = 0;
-    for (const key in numbersStored){
-        delete numbersStored[key];
-    }
+    clearEverything()
     decimalBtn.disabled = false;
-})
+});
 
 clearBtn.addEventListener('click', () =>{
     output.textContent = 0;
     decimalBtn.disabled = false
-}) 
+}); 
 
 function decimalButton(){
     decimalBtn.addEventListener('click', () => {
-        decimalBtn.disabled = true;
+        decimalBtn.disabled = true
+            if(output.textContent == numbersStored['last_number'] || output.textContent == numbersStored['results'] ){
+                output.textContent = '0'}
+        output.textContent = output.textContent + '.' 
         if(numbersStored['results'] == output.textContent){ 
             numbersStored['last_number'] = numbersStored['results']
         }   
     })
-}
+};
 
 
 negativeBtn.addEventListener('click', () => {
     if (Number(output.textContent) > 0){
         output.textContent = '-' + output.textContent}
     else{output.textContent = Math.abs(Number(output.textContent))};
-})
+});
+
+percentBtn.addEventListener('click', () => {output.textContent = parseFloat((output.textContent / 100).toFixed(12))});
+
+function clearEverything(){
+    for (const key in numbersStored){
+        delete numbersStored[key];
+    }
+};
 
 
-
-
-
-inputDigits()
 decimalButton()
+inputDigits()
 inputOperator()
 equalOperate()
 
