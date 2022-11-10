@@ -109,10 +109,6 @@ function operate(operator, a , b){
 
 
 
-// clearBtn.addEventListener('click', () => {
-//     output.textContent = 0;
-//     decimalBtn.disabled = false;
-// });
 
 clearBtn.addEventListener('click', () =>{
     if(clearBtn.classList.contains('clear_all')){
@@ -134,6 +130,8 @@ clearBtn.addEventListener('click', () =>{
 function decimalButton(){
     decimalBtn.addEventListener('click', () => {
         decimalBtn.disabled = true
+        clearBtn.classList.add('clear_all')
+        clearBtn.textContent='C'
             if(output.textContent == numbersStored['last_number'] || output.textContent == numbersStored['results'] ){
                 output.textContent = '0'}
         output.textContent = output.textContent + '.' 
