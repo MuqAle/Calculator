@@ -32,24 +32,30 @@ function inputDigits(){
     for (let btn of digitBtn){
         btn.addEventListener('click', (e) => {
             if(output.textContent == 0 && !output.textContent.includes('.')){
-            output.textContent=''}
+                output.textContent=''}
             else if(output.textContent == numbersStored['last_number'] || output.textContent == numbersStored['results'] ){
                 output.textContent = ''}
-            output.textContent += `${e.target.textContent}`;});
+            output.textContent += `${e.target.textContent}`;
+            clearBtn.classList.add('clear_all')
+            if(!(output.textContent == 0 && !output.textContent.includes('.'))){
+                clearBtn.textContent='C'}
+        });
           
     }
     
 }
 
-output.textContent.includes
 
 
 function inputOperator(){
     for (let btn of operatorBtn){
         btn.addEventListener('click', (e) => {
             decimalBtn.disabled = false
+            clearBtn.classList.add('clear_all')
             numbersStored['last_number'] = output.textContent
-            numbersStored['operator'] = `${e.target.textContent}`
+            numbersStored['operator'] = `${e.target.textContent}`;
+            clearBtn.classList.add('clear_all')
+            clearBtn.textContent = 'C'
         });
         
     }
@@ -77,7 +83,8 @@ function equalOperate(){
             output.textContent = 0
             clearEverything()
         }
-        console.log(numbersStored)
+        clearBtn.classList.add('clear_all')
+        clearBtn.textContent = 'C'
     })
 };
 
@@ -102,15 +109,26 @@ function operate(operator, a , b){
 
 
 
-allClearBtn.addEventListener('click', () => {
-    output.textContent = 0;
-    clearEverything()
-    decimalBtn.disabled = false;
-});
+// clearBtn.addEventListener('click', () => {
+//     output.textContent = 0;
+//     decimalBtn.disabled = false;
+// });
 
 clearBtn.addEventListener('click', () =>{
+    if(clearBtn.classList.contains('clear_all')){
+        clearBtn.textContent = 'AC'
+        output.textContent = 0;
+        decimalBtn.disabled = false
+        clearBtn.classList.remove('clear_all')
+        console.log(numbersStored)
+    }
+    else{
+    clearEverything();
     output.textContent = 0;
-    decimalBtn.disabled = false
+    decimalBtn.disabled = false;
+    console.log(numbersStored)
+    }
+    
 }); 
 
 function decimalButton(){

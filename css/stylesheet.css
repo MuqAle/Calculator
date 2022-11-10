@@ -1,0 +1,43 @@
+#big-container{
+    background-color: #d79ebc ;
+    height: 400px;
+    width: 300px;
+}
+
+#small-container{
+    display: flex;
+    height: 350px;
+    width: 300px;
+}
+
+
+#output-container{
+    background-color:#fbecd1;
+    height: 50px;
+}
+
+.function{
+    background-color: #23278a;
+}
+
+.digit,
+#decimal{
+    background-color: #a07ec3;
+    height: 30px;
+    width: 50px;
+}
+
+.operator,
+#enter-btn{
+   background-color: #cb5278;
+}
+
+#digits-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+#operator-container{
+    display: flex;
+    flex-direction: column;
+}
