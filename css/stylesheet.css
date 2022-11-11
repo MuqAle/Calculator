@@ -1,43 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
 #big-container{
-    background-color: #d79ebc ;
-    height: 400px;
-    width: 300px;
+    background-color: #e9afce ;
+    display: flex;
+    flex-direction: column;
+    height: 460px;
+    width: 310px;
+    row-gap: 15px;
+    border-radius: 20px;
+    align-content: middle;
+    
 }
 
 #small-container{
     display: flex;
-    height: 350px;
-    width: 300px;
+    display: grid;
+    row-gap: 10px;
+    justify-content: space-evenly;
+    grid-template-columns: auto auto auto auto;
 }
 
 
 #output-container{
     background-color:#fbecd1;
-    height: 50px;
+    height: 60px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    
 }
 
+#output{
+    padding-right: 20px;
+    font-family: 'Rubik Bubbles', cursive;
+    font-size: 35px;
+    color: rgb(93, 92, 92);
+}
+
+
+
 .function{
-    background-color: #23278a;
+    background-color: #3d40ad;
 }
 
 .digit,
 #decimal{
-    background-color: #a07ec3;
-    height: 30px;
-    width: 50px;
+    background-color: #ba8ce8;
 }
 
 .operator,
 #enter-btn{
-   background-color: #cb5278;
+   background-color: #e17597;
 }
 
-#digits-container{
+
+button{   
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border:none;
+    transition: .07s;
+    font-family:'Rubik Bubbles', cursive;
+    font-size: 25px;
+    color: rgb(255, 254, 254);
+    
+}
+
+#zero-container{
     display: grid;
     grid-template-columns: auto auto auto;
+    justify-content: space-evenly;
 }
 
-#operator-container{
-    display: flex;
-    flex-direction: column;
+#zero{
+    width: 134px;
+    border-radius: 30px;
 }
+
+.click-digit{
+    transform: scale(1);
+    background-color:#cdb6e4;
+    box-shadow: 0 0 10px #cdb6e4;
+}
+
+
+
+.click-function{
+    transform: scale(1);
+    background-color: #9a9ddf ;
+    box-shadow: 0 0 10px #9a9ddf ;
+}
+
+.click-operator{
+    transform: scale(1);
+    background-color: #eaa6bb;
+    box-shadow: 0 0 10px #eaa6bb;
+}
+
+button.operator.active { 
+    color:#e17597;
+    background-color: white;
+    box-shadow: 0 0 10px white;
+  }
